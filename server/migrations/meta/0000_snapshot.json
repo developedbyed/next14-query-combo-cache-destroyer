@@ -1,0 +1,102 @@
+{
+  "id": "2f186595-291b-4c63-8327-7f369b20d8f8",
+  "prevId": "00000000-0000-0000-0000-000000000000",
+  "version": "5",
+  "dialect": "pg",
+  "tables": {
+    "likes": {
+      "name": "likes",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "posts": {
+      "name": "posts",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "content": {
+          "name": "content",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "postsToLikes": {
+      "name": "postsToLikes",
+      "schema": "",
+      "columns": {
+        "postsID": {
+          "name": "postsID",
+          "type": "serial",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "likesID": {
+          "name": "likesID",
+          "type": "serial",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "postsToLikes_postsID_posts_id_fk": {
+          "name": "postsToLikes_postsID_posts_id_fk",
+          "tableFrom": "postsToLikes",
+          "tableTo": "posts",
+          "columnsFrom": [
+            "postsID"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "postsToLikes_likesID_likes_id_fk": {
+          "name": "postsToLikes_likesID_likes_id_fk",
+          "tableFrom": "postsToLikes",
+          "tableTo": "likes",
+          "columnsFrom": [
+            "likesID"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    }
+  },
+  "enums": {},
+  "schemas": {},
+  "_meta": {
+    "columns": {},
+    "schemas": {},
+    "tables": {}
+  }
+}
