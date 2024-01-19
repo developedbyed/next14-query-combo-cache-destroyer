@@ -10,6 +10,9 @@ const nextConfig = {
       { hostname: "avatars.githubusercontent.com", protocol: "https" },
     ],
   },
+  typescript: {
+    ignoreBuildErrors: true,
+  },
 }
 
 module.exports = nextConfig

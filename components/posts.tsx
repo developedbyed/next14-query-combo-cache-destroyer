@@ -21,7 +21,7 @@ export default function Posts() {
         <CardHeader>
           <CardTitle>Posts by everyone </CardTitle>
           <CardDescription>
-            Currently:{" "}
+            Currently:
             <span
               className={cn(
                 fetchStatus === "idle" ? "text-orange-400" : "",
