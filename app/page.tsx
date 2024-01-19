@@ -1,11 +1,11 @@
 import PostForm from "@/components/post-form"
 import Posts from "@/components/posts"
+import { fetchPosts } from "@/server/actions/create-post"
 import {
   QueryClient,
   HydrationBoundary,
   dehydrate,
 } from "@tanstack/react-query"
-import { fetchPosts } from "@/server/actions/create-post"
 
 export default async function Home() {
   const queryClient = new QueryClient()

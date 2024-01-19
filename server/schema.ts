@@ -10,6 +10,7 @@ export const posts = pgTable("posts", {
     .notNull()
     .$defaultFn(() => createId()),
   content: text("content").notNull(),
+  timestamp: timestamp("timestamp").defaultNow(),
   user_id: text("user_id")
     .notNull()
     .references(() => users.id, {
@@ -23,7 +24,9 @@ export const likes = pgTable("likes", {
     .$defaultFn(() => createId()),
   post_id: text("post_id")
     .notNull()
-    .references(() => posts.id),
+    .references(() => posts.id, {
+      onDelete: "cascade",
+    }),
   user_id: text("user_id")
     .notNull()
     .references(() => users.id, {

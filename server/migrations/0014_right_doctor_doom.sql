@@ -1,0 +1,1 @@
+ALTER TABLE "posts" ADD COLUMN "timestamp" timestamp DEFAULT now();

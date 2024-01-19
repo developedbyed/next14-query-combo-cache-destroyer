@@ -6,7 +6,7 @@ import { formSchema } from "@/lib/formSchema"
 import * as z from "zod"
 import { revalidatePath } from "next/cache"
 import { createSafeActionClient } from "next-safe-action"
-import { eq, and } from "drizzle-orm"
+import { eq, and, desc } from "drizzle-orm"
 import { auth } from "@/server/auth"
 
 export const action = createSafeActionClient()
@@ -38,16 +38,14 @@ export const deletePost = action(deleteSchema, async ({ id }) => {
 })
 
 export const fetchPosts = async () => {
-  const posts = await db.query.posts
-    .findMany({
-      with: {
-        author: true,
-        likes: true,
-      },
-    })
-    .catch((error) => {
-      return { error: error.message }
-    })
+  const posts = await db.query.posts.findMany({
+    with: {
+      author: true,
+      likes: true,
+    },
+    orderBy: (posts, { desc }) => [desc(posts.timestamp)],
+  })
+  if (!posts) return { error: "No posts 😓" }
   if (posts) return { success: posts }
 }
 

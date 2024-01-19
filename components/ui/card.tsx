@@ -77,6 +77,7 @@ const CardFooter = React.forwardRef<
 ))
 CardFooter.displayName = "CardFooter"
 const CardMotion = motion(Card)
+const CardHeaderMotion = motion(CardHeader)
 
 export {
   Card,
@@ -86,4 +87,5 @@ export {
   CardDescription,
   CardContent,
   CardMotion,
+  CardHeaderMotion,
 }

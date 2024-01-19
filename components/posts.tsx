@@ -6,8 +6,15 @@ import { useAction } from "next-safe-action/hooks"
 import { AnimatePresence, motion } from "framer-motion"
 import { cn } from "@/lib/utils"
 import { HeartIcon, Trash } from "lucide-react"
-import { CardDescription, CardHeader, CardMotion, CardTitle } from "./ui/card"
+import {
+  CardDescription,
+  CardHeader,
+  CardHeaderMotion,
+  CardMotion,
+  CardTitle,
+} from "./ui/card"
 import { useSession } from "next-auth/react"
+import Image from "next/image"
 
 export default function Posts() {
   const { data: posts, error: postError, fetchStatus } = useGetPosts()
@@ -18,7 +25,7 @@ export default function Posts() {
   if (posts?.success)
     return (
       <CardMotion layout className="flex flex-col mt-6 p-4 font-medium">
-        <CardHeader>
+        <CardHeaderMotion layout>
           <CardTitle>Posts by everyone </CardTitle>
           <CardDescription>
             Currently:
@@ -31,7 +38,7 @@ export default function Posts() {
               {fetchStatus}
             </span>
           </CardDescription>
-        </CardHeader>
+        </CardHeaderMotion>
 
         <AnimatePresence presenceAffectsLayout>
           {posts?.success.map((post) => (
@@ -40,9 +47,18 @@ export default function Posts() {
               animate={{ opacity: 1 }}
               initial={{ opacity: 0 }}
               exit={{ opacity: 0 }}
-              className="mx-6 my-2 p-4 border-2 border-secondary rounded-md "
+              className="mx-6 my-2 p-4 border-2 border-secondary rounded-md flex flex-col gap-4"
               key={post.id}
             >
+              <div className="flex gap-2 items-center ">
+                <Image
+                  src={post.author.image!}
+                  width={24}
+                  height={24}
+                  alt={post.author.name!}
+                />
+                <h2 className="text-sm font-bold">{post.author.name}</h2>
+              </div>
               <p className="text-primary">{post.content}</p>
               <div className="flex gap-2 items-center">
                 <Trash
