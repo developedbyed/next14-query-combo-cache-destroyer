@@ -53,7 +53,7 @@ export default function Posts() {
                   onClick={() =>
                     executeAddLike({
                       post_id: post.id,
-                      user_id: session?.user.id as string,
+                      user_id: session?.user.id,
                     })
                   }
                   className="flex items-center gap-1 cursor-pointer"
