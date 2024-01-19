@@ -27,7 +27,7 @@
     "framer-motion": "^10.18.0",
     "lucide-react": "^0.309.0",
     "next": "14.0.4",
-    "next-auth": "^5.0.0-beta.5",
+    "next-auth": "^5.0.0-beta.4",
     "next-safe-action": "^6.0.1",
     "pg": "^8.11.3",
     "postgres": "^3.4.3",

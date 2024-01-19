@@ -13,8 +13,8 @@ export const action = createSafeActionClient()
 
 export const createPost = action(formSchema, async ({ content }) => {
   const session = await auth()
-  console.log(session?.user.id)
-  if (!content || !session?.user) return { error: "Something went wrong" }
+  console.log(session?.user?.id)
+  if (!content || !session?.user?.id) return { error: "Something went wrong" }
   const newPost = await db.insert(posts).values({
     content,
     user_id: session.user.id,

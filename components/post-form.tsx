@@ -38,6 +38,7 @@ export default function PostForm() {
 
   function onSubmit(values: z.infer<typeof formSchema>) {
     execute(values)
+    form.reset()
   }
 
   return (
